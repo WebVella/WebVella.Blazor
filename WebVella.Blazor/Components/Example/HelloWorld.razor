@@ -6,35 +6,48 @@
 @inject IJSRuntime JSRuntime;
 
 <div class="my-component">
-    Hello World
-    <button @onclick="SendEvent">Send Event</button>
+	Hello World @Date.ToLongTimeString()
+	<button @onclick="SendEvent">Send Event</button>
 </div>
 
 @code{
-   protected DateTime Date = DateTime.Now;
+	[Parameter]
+	public string EventName { get; set; }
 
-    protected override async Task OnInitializedAsync()
+	protected DateTime Date = DateTime.Now;
+
+	protected override async Task OnInitializedAsync()
 	{
 		Store.Current.BlazorEvent += (object sender, BlazorEventArgs e) =>
 		{
-			dynamic payload = e.Payload;
+		//dynamic payload = e.Payload;
+		RecieveEvent(e.Payload);
 		};
 
 		await base.OnInitializedAsync();
 	}
 
-   protected override async Task OnAfterRenderAsync(bool firstRender)
-   {
-       if (firstRender)
-       {
-           await new WvBlazorJsInterop().SetJsScript(JSRuntime,"external.js");
-           await new WvBlazorJsInterop().SetCssLink(JSRuntime,"external.css");
-       }
-   }
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await new WvBlazorJsInterop().SetJsScript(JSRuntime, "external.js");
+			await new WvBlazorJsInterop().SetCssLink(JSRuntime, "external.css");
+		}
+	}
 
 	private async Task SendEvent()
 	{
-      	dynamic payload = new { id = Guid.NewGuid(), Name = "Sample payload name" };
+		dynamic payload = new { id = Guid.NewGuid(), Name = EventName };
 		Store.Current.SendBlazorEvent(this, new BlazorEventArgs(payload));
+	}
+
+	private async Task RecieveEvent(dynamic payload)
+	{
+		if (payload.Name == EventName)
+		{
+			Date = DateTime.Now;
+			StateHasChanged();
+		}
 	}
 }
