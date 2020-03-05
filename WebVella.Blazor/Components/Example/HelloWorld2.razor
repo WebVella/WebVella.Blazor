@@ -1,0 +1,26 @@
+﻿@namespace WebVella.Blazor.Components
+@using Microsoft.JSInterop
+@using Microsoft.AspNetCore.Components
+@using System.Threading.Tasks;
+@using WebVella.Blazor.Utils;
+
+@inject IJSRuntime JSRuntime;
+
+<div class="my-component">
+	Hello World @Date.ToString("HH:mm:ss:fff:tt")
+</div>
+
+@code{
+	protected DateTime Date = DateTime.Now;
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await new WvBlazorJsInterop().SetJsScript(JSRuntime, "external.js");
+			await new WvBlazorJsInterop().SetCssLink(JSRuntime, "external.css");
+
+			
+		}
+	}
+}

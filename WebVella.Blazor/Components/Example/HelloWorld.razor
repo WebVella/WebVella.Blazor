@@ -1,0 +1,40 @@
+﻿@namespace WebVella.Blazor.Components
+@using Microsoft.JSInterop
+@using System.Threading.Tasks;
+@using WebVella.Blazor.Utils;
+
+@inject IJSRuntime JSRuntime;
+
+<div class="my-component">
+    Hello World
+    <button @onclick="SendEvent">Send Event</button>
+</div>
+
+@code{
+   protected DateTime Date = DateTime.Now;
+
+    protected override async Task OnInitializedAsync()
+	{
+		Store.Current.BlazorEvent += (object sender, BlazorEventArgs e) =>
+		{
+			dynamic payload = e.Payload;
+		};
+
+		await base.OnInitializedAsync();
+	}
+
+   protected override async Task OnAfterRenderAsync(bool firstRender)
+   {
+       if (firstRender)
+       {
+           await new WvBlazorJsInterop().SetJsScript(JSRuntime,"external.js");
+           await new WvBlazorJsInterop().SetCssLink(JSRuntime,"external.css");
+       }
+   }
+
+	private async Task SendEvent()
+	{
+      	dynamic payload = new { id = Guid.NewGuid(), Name = "Sample payload name" };
+		Store.Current.SendBlazorEvent(this, new BlazorEventArgs(payload));
+	}
+}

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebVella.Blazor", "WebVella.Blazor\WebVella.Blazor.csproj", "{BBB5C447-E558-4043-8D95-F7C7836A076B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebVella.Blazor.Site", "WebVella.Blazor.Site\WebVella.Blazor.Site.csproj", "{EAAE8CB1-8C0C-4D75-939A-5A9FA4772289}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBB5C447-E558-4043-8D95-F7C7836A076B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBB5C447-E558-4043-8D95-F7C7836A076B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBB5C447-E558-4043-8D95-F7C7836A076B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBB5C447-E558-4043-8D95-F7C7836A076B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAAE8CB1-8C0C-4D75-939A-5A9FA4772289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAAE8CB1-8C0C-4D75-939A-5A9FA4772289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAAE8CB1-8C0C-4D75-939A-5A9FA4772289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAAE8CB1-8C0C-4D75-939A-5A9FA4772289}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0082DB2D-130F-4BB6-B40F-F4C733B2199A}
+	EndGlobalSection
+EndGlobal
